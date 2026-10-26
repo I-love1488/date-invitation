@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Приглашение для Александры 💕</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Фоновые элементы (маленькие эмодзи) -->
+  <div id="background-elements"></div>
+  
+  <!-- ВАШИ 11 КАРТИНОК (скрипт их размножит и расставит) -->
+  <div id="animal-container">
+    <img src="cat1.png" class="animal-source" alt="Котенок">
+    <img src="cat2.png" class="animal-source" alt="Котенок 2">
+    <img src="cat3.png" class="animal-source" alt="Котенок 3">
+    <img src="cat4.png" class="animal-source" alt="Котенок 4">
+    <img src="cat5.png" class="animal-source" alt="Котенок 5">
+    <img src="cat6.png" class="animal-source" alt="Котенок 6">
+
+    <img src="bunny1.png" class="animal-source" alt="Кролик">
+    <img src="bunny2.png" class="animal-source" alt="Кролик 2">
+    <img src="bunny3.png" class="animal-source" alt="Кролик 3">
+    <img src="bunny4.png" class="animal-source" alt="Кролик 4">
+    <img src="bunny5.png" class="animal-source" alt="Кролик 5">
+  </div>
+
+  <!-- Контейнер для взрыва сердец -->
+  <div id="heart-explosion"></div>
+
+  <!-- Слайд 1: Вопрос -->
+  <section id="slide1" class="slide active">
+    <h1 class="funny-title">Александра, вы получили приглашение на ужин от лысого джентльмена. Вы согласны?</h1>
+    <div class="heart-container">
+      <div class="heart-bg"></div>
+      <button id="yesBtn" class="yes-in-heart">Да 💖</button>
+    </div>
+    <button id="noBtn" class="no-btn">Нет</button>
+    <p class="hint">Попробуй нажать «Нет» 😏</p>
+  </section>
+
+  <!-- Слайд 2: Благодарность -->
+  <section id="slide2" class="slide">
+    <h1>Спасибо, что согласилась!</h1>
+    <p class="sub">Хотя выбора у тебя не было 🤣</p>
+    <button class="next-btn" data-next="slide3">Далее →</button>
+  </section>
+
+  <!-- Слайд 3: Выбор ресторана -->
+  <section id="slide3" class="slide">
+    <h2>Выбери заведение</h2>
+    <div class="grid-container">
+      <label class="select-card">
+        <input type="radio" name="restaurant" value="Фреско">
+        <span class="icon">🍝</span>
+        <span>Фреско</span>
+      </label>
+      <label class="select-card">
+        <input type="radio" name="restaurant" value="Распутин">
+        <span class="icon">🥩</span>
+        <span>Распутин</span>
+      </label>
+      <label class="select-card">
+        <input type="radio" name="restaurant" value="Булгаков">
+        <span class="icon">📚</span>
+        <span>Булгаков</span>
+      </label>
+      <label class="select-card">
+        <input type="radio" name="restaurant" value="Дзеими">
+        <span class="icon">🏮</span>
+        <span>Дзеими</span>
+      </label>
+    </div>
+    <button class="next-btn" data-next="slide4">Далее →</button>
+  </section>
+
+  <!-- Слайд 4: Выбор ужина -->
+  <section id="slide4" class="slide">
+    <h2>Какой ужин предпочитаешь?</h2>
+    <div class="grid-container">
+      <label class="select-card">
+        <input type="checkbox" value="Легкий ужин">
+        <span class="icon">🥗</span>
+        <span>Легкий ужин</span>
+      </label>
+      <label class="select-card">
+        <input type="checkbox" value="Наедаемся на все бабки">
+        <span class="icon">💰</span>
+        <span>Наедаемся на все бабки</span>
+      </label>
+      <label class="select-card">
+        <input type="checkbox" value="Десертики">
+        <span class="icon">🧁</span>
+        <span>Десертики</span>
+      </label>
+      <label class="select-card">
+        <input type="checkbox" value="Шашлычок с вином">
+        <span class="icon">🍢</span>
+        <span>Шашлычок с вином</span>
+      </label>
+    </div>
+    <button class="next-btn" data-next="slide-girl">Далее →</button>
+  </section>
+
+  <!-- НОВЫЙ СЛАЙД: Комплимент -->
+  <section id="slide-girl" class="slide">
+    <div class="compliment-container">
+      <img src="cat1.png" class="compliment-img left-img" alt="Котенок">
+      <h2 class="bright-text">Здесь я просто напомню, что ты самая очаровательная девушка на свете 💖✨</h2>
+      <img src="bunny1.png" class="compliment-img right-img" alt="Кролик">
+    </div>
+    <button class="next-btn" data-next="slide5">Далее →</button>
+  </section>
+
+  <!-- Слайд 5: Выбор даты -->
+  <section id="slide5" class="slide">
+    <h2>Когда тебе удобно?</h2>
+    <label>Выбери дату:</label>
+    <input type="date" id="datePicker">
+    <label>Выбери время:</label>
+    <input type="time" id="timePicker">
+    <button class="next-btn" data-next="slide6">Далее →</button>
+  </section>
+
+  <!-- Слайд 6: Напоминание -->
+  <section id="slide6" class="slide">
+    <h2>Запомнила? 😊</h2>
+    
+    <img src="bunny2.png" class="slide-animal" alt="Кролик">
+    
+    <p class="reminder" id="reminderText"></p>
+    
+    <p class="love">С тебя поцелуй в мою шикарную лысину ❤️</p>
+
+    <div class="screenshot-hint">
+      <p>📸 А теперь заскринь этот экран и отправь мне, чтобы я всё забронировал!</p>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ================= ФОН: Маленькие эмодзи ================= */
+#background-elements {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.floating-emoji {
+  position: absolute;
+  font-size: 30px;
+  opacity: 0.5;
+  animation: floatAround linear infinite;
+}
+
+@keyframes floatAround {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-40px) rotate(20deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* ================= ЖИВОТНЫЕ НА ФОНЕ (генерируются в JS) ================= */
+.animal-source {
+  display: none; /* Скрываем исходные картинки */
+}
+
+.bg-animal {
+  position: fixed;
+  z-index: 1;
+  pointer-events: none; 
+  opacity: 0.9; 
+  /* Плавная анимация покачивания */
+  animation: floatBig ease-in-out infinite alternate;
+}
+
+@keyframes floatBig {
+  0% { transform: translateY(0px) rotate(-10deg); }
+  100% { transform: translateY(-60px) rotate(10deg); }
+}
+
+/* ================= ВЗРЫВ СЕРДЕЦ ================= */
+#heart-explosion {
+  position: fixed;
+  top: 50%; left: 50%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.exploding-heart {
+  position: absolute;
+  font-size: 24px;
+  animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
+}
+
+/* ================= СЛАЙДЫ ================= */
+.slide {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+  width: 100%;
+  max-width: 550px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
+}
+
+.slide.active {
+  display: flex;
+}
+
+/* Слайд 1 */
+.funny-title {
+  font-size: 20px;
+  color: #c2185b;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.heart-container {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.heart-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #e91e63;
+  clip-path: path('M110 200 C 20 130, 0 80, 0 50 C 0 10, 40 0, 70 20 C 90 35, 110 60, 110 60 C 110 60, 130 35, 150 20 C 180 0, 220 10, 220 50 C 220 80, 200 130, 110 200 Z');
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+.yes-in-heart {
+  position: relative;
+  z-index: 2;
+  background: white;
+  border: none;
+  color: #e91e63;
+  font-size: 22px;
+  font-weight: 700;
+  padding: 16px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  transition: transform 0.15s;
+}
+
+.yes-in-heart:active { transform: scale(0.95); }
+
+.no-btn {
+  background: #9e9e9e;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  position: absolute;
+  left: 50%;
+  bottom: 60px;
+  transform: translateX(-50%);
+  margin: 0;
+  z-index: 5;
+}
+
+.hint { 
+  position: absolute;
+  bottom: 20px;
+  color: #888; 
+  font-size: 13px; 
+}
+
+/* Общие кнопки «Далее» */
+.next-btn {
+  margin-top: 20px;
+  background: #e91e63;
+  color: white;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 50px;
+  font-size: 17px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.next-btn:active { opacity: 0.8; }
+
+/* Слайд 2 */
+h1 { font-size: 24px; color: #c2185b; margin-bottom: 12px; }
+.sub { color: #555; font-size: 18px; font-weight: 600; }
+
+/* Слайды 3, 4, 5 */
+h2 { color: #c2185b; margin-bottom: 20px; font-size: 22px; }
+
+#slide5 label {
+  display: block;
+  margin: 12px 0 6px;
+  color: #555;
+  font-size: 14px;
+  text-align: left;
+  width: 100%;
+}
+
+#slide5 input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #f8bbd0;
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+}
+
+#slide5 input:focus { border-color: #e91e63; }
+
+/* Сетка карточек */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.select-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 10px;
+  background: #fce4ec;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  border: 2px solid transparent;
+}
+
+.select-card input { display: none; }
+
+.select-card .icon {
+  font-size: 35px;
+  margin-bottom: 8px;
+  transition: transform 0.2s;
+}
+
+.select-card span:last-child {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  line-height: 1.2;
+}
+
+.select-card:has(input:checked) {
+  background: #f8bbd0;
+  border-color: #e91e63;
+}
+
+.select-card:has(input:checked) .icon {
+  transform: scale(1.2) rotate(10deg);
+}
+
+/* ================= НОВЫЙ СЛАЙД: КОМПЛИМЕНТ ================= */
+.compliment-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.compliment-img {
+  width: 100px;
+  animation: floatBig 3s ease-in-out infinite alternate;
+}
+
+.left-img { transform: rotate(-10deg); }
+.right-img { transform: rotate(10deg); animation-delay: 1s; }
+
+.bright-text {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.4;
+  text-align: center;
+  margin: 0 15px;
+  background: linear-gradient(45deg, #ff0080, #ff8c00, #40e0d0, #ff0080);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Слайд 6 */
+.reminder {
+  font-size: 17px;
+  color: #333;
+  line-height: 1.6;
+  margin: 10px 0;
+  padding: 15px;
+  background: #fce4ec;
+  border-radius: 16px;
+  white-space: pre-wrap;
+  width: 100%;
+}
+
+.love {
+  font-size: 20px;
+  color: #e91e63;
+  font-weight: 700;
+  margin-top: 15px;
+}
+
+.slide-animal {
+  width: 150px;
+  margin-bottom: 10px;
+  animation: floatBig 4s ease-in-out infinite alternate;
+}
+
+/* Подсказка про скриншот */
+.screenshot-hint {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: #fff3e0;
+  border-radius: 12px;
+  color: #e65100;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.4;
+  animation: pulse 2s infinite;
+}
